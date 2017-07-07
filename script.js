@@ -25,7 +25,6 @@ Die.prototype.roll = function(){
 }
 
 function newDie(){
-    // this.value = (Math.floor(Math.random() * 6) + 1);
     var myDie = new Die;
     dieArray.push(myDie);
     console.log(sumArray);
@@ -35,17 +34,22 @@ function newRoll(){
     sumArray = [];
     dieArray.forEach(function(myDie){
     myDie.roll();
-})
+    })
     console.log(sumArray);
 }
-
+//extra credit functions
 function sums(){
-//    var sumString = sumArray.toString();
     var total = sumArray.reduce(function(sum, value) {
         return sum + value;
     }, 0);
    alert(total);
 }
-// var total = [0, 1, 2, 3].reduce(function(sum, value) {
-//   return sum + value;
-// }, 0);
+
+Die.prototype.rollAgain = function(){
+    console.log('clicked');
+}
+function rollSingle(){
+    myDie.rollAgain();
+}
+
+$('div').on('dblclick', rollSingle);
