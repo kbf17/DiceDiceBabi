@@ -1,30 +1,33 @@
 $(document).ready(
-   
+    $('#create').on('click', newDie),
+    $('#rolls').on('click', newRoll)
 );
 var dieArray = [];
 
-function Die(value){
+function Die(){
+    value = (Math.floor(Math.random() * 6) + 1);
     this.value = value;
-    var value = (Math.floor(Math.random() * 6) + 1);
-    var div = $("<div></div>");
-    div.addClass('dice');
-    div.text(value);
-    $('body').append(div);
-    dieArray.push(Die);
+    this.div = $("<div></div>");
+    this.div.addClass('dice');
+    this.div.text(value);
+    $('body').append(this.div);
 }
 
 Die.prototype.roll = function(){
-   var value = Math.floor(Math.random() * 6) + 1
-    this.text(this.value);
+    value = (Math.floor(Math.random() * 6) + 1);
+    this.div.text(value);
     console.log(value);
+    console.log(this);
 }
 
+function newDie(){
+    this.value = (Math.floor(Math.random() * 6) + 1);
+    var myDie = new Die;
+    dieArray.push(myDie);
+}
 
- $('#create').on('click', function(){
-    var myDie = new Die();
-    console.log(myDie.roll);
-    console.log(dieArray);
+function newRoll(){
+    dieArray.forEach(function(myDie){
     myDie.roll();
- })
-
-//  $('#rolls').on('click', myDie.roll)
+    })
+}
